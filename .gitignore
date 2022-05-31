@@ -1,0 +1,14 @@
+# build output and dependencies
+dist/
+node_modules/
+
+# ignoring package.lock since we prefer yarn
+package-lock.json
+
+# Jetbrains folder
+.idea
+
+# No archives here!
+.tgz
+.zip
+.7z

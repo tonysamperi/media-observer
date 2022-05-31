@@ -1,0 +1,46 @@
+{
+  "extends": [
+    "../tslint.json"
+  ],
+  "rules": {
+    "typedef-whitespace": false,
+    "naming-convention": [
+      true,
+      {
+        "type": "accessor",
+        "modifiers": [
+          "public"
+        ],
+        "format": "camelCase",
+        "leadingUnderscore": "forbid"
+      },
+      {
+        "type": "accessor",
+        "modifiers": [
+          "public",
+          "static"
+        ],
+        "format": "UPPER_CASE",
+        "leadingUnderscore": "forbid"
+      },
+      {
+        "type": "accessor",
+        "modifiers": [
+          "protected",
+          "static"
+        ],
+        "format": "UPPER_CASE",
+        "leadingUnderscore": "require"
+      },
+      {
+        "type": "accessor",
+        "modifiers": [
+          "private",
+          "static"
+        ],
+        "format": "UPPER_CASE",
+        "leadingUnderscore": "require"
+      }
+    ]
+  }
+}

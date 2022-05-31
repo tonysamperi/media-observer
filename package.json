@@ -1,0 +1,35 @@
+{
+  "name": "media-observer",
+  "version": "1.0.0",
+  "description": "Javascript observable resize (event listener) inspired by Angular Flex Layout Media Observer",
+  "scripts": {
+    "bundle": "NODE_ENV=production webpack --config webpack.config.js",
+    "bundle:lint": "npm run lint && npm run bundle",
+    "lint": "tslint -p tsconfig.json",
+    "serve": "NODE_ENV=development webpack serve --config webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "kiko",
+    "milano"
+  ],
+  "author": "Tony Samperi",
+  "license": "MIT",
+  "dependencies": {
+    "rxjs": "^7.4.0"
+  },
+  "main": "index.js",
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^10.2.0",
+    "file-loader": "^6.2.0",
+    "ts-loader": "^9.2.6",
+    "ts-node": "^10.8.0",
+    "tslint": "^6.1.3",
+    "tslint-consistent-codestyle": "^1.16.0",
+    "typescript": "^4.4.4",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.9.0"
+  }
+}
