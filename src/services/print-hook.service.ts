@@ -63,7 +63,7 @@ export class PrintHookService {
     //  and `afterprint` event listeners.
     private registeredBeforeAfterPrintHooks = false;
 
-    constructor() {
+    protected constructor() {
     }
 
     static setBreakpoints(breakpoints: BreakPoint[]): void {

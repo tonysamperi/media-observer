@@ -86,7 +86,7 @@ export class MediaObserverService {
     private readonly _media$: Observable<MediaChange[]>;
     private readonly destroyed$ = new Subject<void>();
 
-    constructor() {
+    protected constructor() {
         this._media$ = this._watchActivations();
         this.media$ = this._media$.pipe(
             filter((changes: MediaChange[]) => changes.length > 0),

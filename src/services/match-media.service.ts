@@ -34,7 +34,7 @@ export class MatchMediaService {
 
     private readonly _pendingRemoveListenerFns: Array<() => void> = [];
 
-    private constructor() {
+    protected constructor() {
     }
 
     destroy(): void {
