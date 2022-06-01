@@ -19,6 +19,8 @@ const entry = {
     index: "./src/index.ts"
 };
 
+const externals = {};
+
 const plugins = [
     new CleanWebpackPlugin({
         cleanStaleWebpackAssets: false, // resolve conflict with `CopyWebpackPlugin`
@@ -34,6 +36,9 @@ if (locals.IS_DEV) {
         })
     );
     entry.page = "./src/test/page.ts";
+}
+else {
+    externals.rxjs = "rxjs";
 }
 
 module.exports = {
@@ -58,6 +63,7 @@ module.exports = {
     output: {
         filename: "[name].js",
         path: resolve(__dirname, "dist")
-    }
+    },
+    externals
 };
 
