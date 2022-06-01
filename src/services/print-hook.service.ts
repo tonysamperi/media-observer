@@ -30,38 +30,40 @@ export const BREAKPOINT_PRINT = {
 export class PrintHookService {
 
     static get INSTANCE(): PrintHookService {
-        return this._INSTANCE || new PrintHookService();
+        this._INSTANCE || (this._INSTANCE = new PrintHookService());
+
+        return this._INSTANCE;
     }
 
-    private static _BREAKPOINTS = DEFAULT_BREAKPOINTS;
-    private static _INSTANCE?: PrintHookService;
+    protected static _BREAKPOINTS = DEFAULT_BREAKPOINTS;
+    protected static _INSTANCE?: PrintHookService;
 
     protected _breakpoints: BreakPointRegistry = new BreakPointRegistry(PrintHookService._BREAKPOINTS);
     protected _document: any = document;
     // tslint:disable-next-line:ban-types
-    private afterPrintEventListeners: Function[] = [];
+    protected afterPrintEventListeners: Function[] = [];
 
     // tslint:disable-next-line:ban-types
-    private beforePrintEventListeners: Function[] = [];
-    private deactivations: BreakPoint[] = [];
+    protected beforePrintEventListeners: Function[] = [];
+    protected deactivations: BreakPoint[] = [];
 
-    private formerActivations: Array<BreakPoint> | null = null;
+    protected formerActivations: Array<BreakPoint> | null = null;
 
     // Is this service currently in print mode
-    private isPrinting = false;
+    protected isPrinting = false;
 
     // isPrintingBeforeAfterEvent is used to track if we are printing from within
     // a `beforeprint` event handler. This prevents the typical `stopPrinting`
     // form `interceptEvents` so that printing is not stopped while the dialog
     // is still open. This is an extension of the `isPrinting` property on
     // browsers which support `beforeprint` and `afterprint` events.
-    private isPrintingBeforeAfterEvent = false;
-    private queue = new PrintQueue();
+    protected isPrintingBeforeAfterEvent = false;
+    protected queue = new PrintQueue();
 
 
     // registeredBeforeAfterPrintHooks tracks if we registered the `beforeprint`
     //  and `afterprint` event listeners.
-    private registeredBeforeAfterPrintHooks = false;
+    protected registeredBeforeAfterPrintHooks = false;
 
     protected constructor() {
     }
@@ -124,6 +126,7 @@ export class PrintHookService {
 
     /** Teardown logic for the service. */
     destroy() {
+        PrintHookService._INSTANCE = void 0;
         if (this._document.defaultView) {
             this.beforePrintEventListeners.forEach(l => this._document.defaultView.removeEventListener("beforeprint", l));
             this.afterPrintEventListeners.forEach(l => this._document.defaultView.removeEventListener("afterprint", l));

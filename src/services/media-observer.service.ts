@@ -4,6 +4,8 @@ import {OptionalBreakpoint} from "../models/optional-breakpoint.type";
 import {BreakPointRegistry} from "../models/breakpoints-registry.class";
 import {Utils} from "../shared/utils.class";
 import {PrintHookService} from "./print-hook.service";
+import {DEFAULT_BREAKPOINTS} from "../shared/default-breakpoints.const";
+import {BreakPoint} from "../models/breakpoint.interface";
 //
 import {Subject, asapScheduler, Observable, of} from "rxjs";
 import {
@@ -14,8 +16,6 @@ import {
     switchMap,
     takeUntil,
 } from "rxjs/operators";
-import {DEFAULT_BREAKPOINTS} from "../shared/default-breakpoints.const";
-import {BreakPoint} from "../models/breakpoint.interface";
 
 
 /**
@@ -63,11 +63,13 @@ import {BreakPoint} from "../models/breakpoint.interface";
 export class MediaObserverService {
 
     static get INSTANCE(): MediaObserverService {
-        return this._INSTANCE || new MediaObserverService();
+        this._INSTANCE || (this._INSTANCE = new MediaObserverService());
+
+        return this._INSTANCE;
     }
 
-    private static _BREAKPOINTS = DEFAULT_BREAKPOINTS;
-    private static _INSTANCE?: MediaObserverService;
+    protected static _BREAKPOINTS = DEFAULT_BREAKPOINTS;
+    protected static _INSTANCE?: MediaObserverService;
 
     /** Filter MediaChange notifications for overlapping breakpoints */
     filterOverlaps = false;
@@ -83,8 +85,8 @@ export class MediaObserverService {
     protected _hook: PrintHookService = PrintHookService.INSTANCE;
     protected _matchMedia: MatchMediaService = MatchMediaService.INSTANCE;
 
-    private readonly _media$: Observable<MediaChange[]>;
-    private readonly destroyed$ = new Subject<void>();
+    protected readonly _media$: Observable<MediaChange[]>;
+    protected readonly destroyed$ = new Subject<void>();
 
     protected constructor() {
         this._media$ = this._watchActivations();
@@ -114,6 +116,7 @@ export class MediaObserverService {
      * MediaObserver subscribers
      */
     destroy(): void {
+        MediaObserverService._INSTANCE = void 0;
         this.destroyed$.next();
         this.destroyed$.complete();
     }

@@ -8,10 +8,12 @@ import {filter} from "rxjs/operators";
 export class MatchMediaService {
 
     static get INSTANCE(): MatchMediaService {
-        return this._INSTANCE || new MatchMediaService();
+        this._INSTANCE || (this._INSTANCE = new MatchMediaService());
+
+        return this._INSTANCE;
     }
 
-    private static _INSTANCE?: MatchMediaService;
+    protected static _INSTANCE?: MatchMediaService;
 
     /**
      * Publish list of all current activations
@@ -32,7 +34,7 @@ export class MatchMediaService {
 
     protected _observable$ = this.source.asObservable();
 
-    private readonly _pendingRemoveListenerFns: Array<() => void> = [];
+    protected readonly _pendingRemoveListenerFns: Array<() => void> = [];
 
     protected constructor() {
     }
