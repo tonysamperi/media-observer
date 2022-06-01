@@ -12,8 +12,8 @@ class Page {
             .subscribe(($event: MediaChange[]) => {
             console.info("GOT CHANGES", $event);
             console.info("TEST", {
-                gtxs: this._bo.isActive("gtxs"),
-                "gt-xs": this._bo.isActive("gt-xs"),
+                gtxs: this._bo.isActive("gt-xs"),
+                gtxsWrong: this._bo.isActive("gt-xs"),
                 gtsm: this._bo.isActive("gt-sm"),
                 gtmd: this._bo.isActive("gt-md"),
                 ltmd: this._bo.isActive("lt-md"),
