@@ -16,10 +16,7 @@ const locals = {
 };
 
 const entry = {
-    index: "./src/index.ts",
-    models: "./src/models/*.ts",
-    services: "./src/services/*.ts",
-    shared: "./src/shared/*.ts",
+    index: "./src/index.ts"
 };
 
 const plugins = [
