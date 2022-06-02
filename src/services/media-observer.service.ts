@@ -14,7 +14,7 @@ import {
     filter,
     map,
     switchMap,
-    takeUntil,
+    takeUntil
 } from "rxjs/operators";
 
 
@@ -135,6 +135,17 @@ export class MediaObserverService {
 
             return query !== null && this._matchMedia.isActive(query);
         });
+    }
+
+    /**
+     * Whether one or more media queries match the current viewport size.
+     * @param value One or more media queries to check.
+     * @returns Whether any of the media queries match.
+     */
+    isMatched(value: string | string[]): boolean {
+        const queries = splitQueries(Utils.coerceArray(value));
+
+        return queries.some(mediaQuery => this._matchMedia.registerQuery(mediaQuery)[0].matches);
     }
 
     // ************************************************
