@@ -1,4 +1,5 @@
-import {MediaObserverService, MediaChange, BreakpointAliases} from "../index";
+// import {MediaObserverService, MediaChange, BreakpointAliases} from "../index";
+import {MediaObserverService, MediaChange, BreakpointAliases} from "../../dist";
 //
 import {fromEvent} from "rxjs";
 import {debounceTime} from "rxjs/operators";
@@ -24,6 +25,7 @@ class Page {
     }
 
     private _init(): void {
+        MediaObserverService.buildBreakpoints([]);
         this._bo.asObservable()
             .pipe(debounceTime(250))
             .subscribe(($event: MediaChange[]) => {
