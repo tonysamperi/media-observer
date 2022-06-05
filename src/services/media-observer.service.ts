@@ -1,3 +1,4 @@
+import {BreakpointAliases} from "../models/breakpoint-aliases.enum";
 import {MediaChange} from "../models/media-change.class";
 import {MatchMediaService} from "./match-media.service";
 import {OptionalBreakpoint} from "../models/optional-breakpoint.type";
@@ -96,6 +97,15 @@ export class MediaObserverService {
         );
     }
 
+    /**
+     * Builds the array of breakpoints starting with a simple map of base breakpoints
+     * Util to customize the breakpoints before creating the MediaObserverService instance
+     * @param breakpoints: [alias, mediaQuery]
+     */
+    static buildBreakpoints(breakpoints: [BreakpointAliases | string, string][]): BreakPoint[] {
+        return Utils.buildBreakpoints(breakpoints);
+    }
+
     static setBreakpoints(breakpoints: BreakPoint[]): void {
         this._BREAKPOINTS = breakpoints;
     }
@@ -145,7 +155,7 @@ export class MediaObserverService {
     isMatched(value: string | string[]): boolean {
         const queries = splitQueries(Utils.coerceArray(value));
 
-        return queries.some(mediaQuery => this._matchMedia.registerQuery(mediaQuery)[0].matches);
+        return queries.some(mediaQuery => this._matchMedia.registerQuery(mediaQuery)[0]?.matches);
     }
 
     // ************************************************

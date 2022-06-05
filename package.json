@@ -1,6 +1,6 @@
 {
   "name": "media-observer",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Javascript observable (RxJS) resize (event listener) heavily inspired by Angular Flex Layout Media Observer",
   "scripts": {
     "bundle": "rollup -c rollup.config.js",
