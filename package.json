@@ -1,13 +1,12 @@
 {
   "name": "media-observer",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Javascript observable (RxJS) resize (event listener) heavily inspired by Angular Flex Layout Media Observer",
   "scripts": {
     "bundle": "rollup -c rollup.config.js",
     "bundle:lint": "npm run lint && npm run bundle",
-    "bundle:webpack": "NODE_ENV=production webpack --config webpack.config.js",
     "lint": "tslint -p tsconfig.json",
-    "serve": "NODE_ENV=development webpack serve --config webpack.config.js",
+    "serve": "webpack serve --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

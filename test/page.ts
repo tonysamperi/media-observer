@@ -1,5 +1,5 @@
-// import {MediaObserverService, MediaChange, BreakpointAliases} from "../index";
-import {MediaObserverService, MediaChange, BreakpointAliases} from "../../dist";
+import {MediaObserverService, MediaChange, BreakpointAliases} from "../src/index";
+// import {MediaObserverService, MediaChange, BreakpointAliases} from "../../dist";
 //
 import {fromEvent} from "rxjs";
 import {debounceTime} from "rxjs/operators";
